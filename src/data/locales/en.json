@@ -1,0 +1,161 @@
+{
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "about": "About Us",
+    "contacts": "Contact"
+  },
+  "hero": {
+    "title_line1": "The Engineering",
+    "title_line2": "Of the Sea",
+    "subtitle": "Technical Precision. Boundless Performance.",
+    "explore_catalog": "Explore Catalog",
+    "inspiration": "Inspiration"
+  },
+  "mission": {
+    "badge": "Beyond the Surface",
+    "title_line1": "Our",
+    "title_line2": "Mission",
+    "p1": "Frallicciardi specializes in the fabrication and transformation of plexiglass and related materials, designing and manufacturing bespoke products for the luxury marine sector.",
+    "p2": "For over 28 years, we have combined traditional maritime craftsmanship with innovative systems and materials. Catering to premium shipyards and discerning private clients, our focus remains on meticulous attention to every single detail.",
+    "p3": "Our primary objective is client satisfaction, fostering clear and seamless collaborations from the very beginning. Our hallmarks in the maritime sector are reliability, transparency, and absolute efficiency.",
+    "cta": "Discover Our Legacy",
+    "experience_years": "Years of Experience",
+    "detail_care": "Attention to Detail"
+  },
+  "qualities": {
+    "precision_title": "Reliability",
+    "precision_desc": "Trust in us is our business card.",
+    "certified_title": "Quality",
+    "certified_desc": "Only high-quality materials for the manufacturing of our products.",
+    "experience_title": "Experience",
+    "experience_desc": "Excellent results achieved over time at the customer's service.",
+    "featured_title": "Featured",
+    "winch_title": "Winch Pro Systems",
+    "winch_desc": "Performance Series 2024",
+    "propeller_title": "Pro-Pitch V6 Propeller",
+    "propeller_desc": "Hydrodynamic Efficiency"
+  },
+  "categories": {
+    "badge": "Browse by Category",
+    "title_line1": "Our",
+    "title_line2": "Excellence",
+    "accessori": "Accessories",
+    "parabrezza": "Windscreens",
+    "porte_scorrevoli": "Sliding Doors",
+    "sportelli": "Access Hatches",
+    "polimero": "Polymers",
+    "elettronica": "Electronics"
+  },
+  "contact_section": {
+    "badge": "Contact",
+    "title_line1": "Always at",
+    "title_line2": "Your Disposal",
+    "opening_hours": "Opening Hours",
+    "hours_detail": "MON/SAT — 08:30 / 18:00",
+    "desc": "For any inquiries or further details regarding our bespoke marine solutions, please do not hesitate to reach out. Complete the form with your details, and our team will respond to your inquiry promptly.",
+    "location": "Headquarters",
+    "phone": "Phone",
+    "email": "Email",
+    "form_name": "Full Name",
+    "form_name_placeholder": "First and Last Name",
+    "form_email": "Email",
+    "form_email_placeholder": "email@example.com",
+    "form_phone": "Phone",
+    "form_phone_placeholder": "+39 ...",
+    "form_message": "Message",
+    "form_message_placeholder": "How may we assist you?",
+    "form_submit": "Send Message"
+  },
+  "featured_products": {
+    "badge": "Highlights",
+    "title": "Featured Products",
+    "view_all": "View Full Catalog",
+    "details": "Technical Specs"
+  },
+  "catalog_page": {
+    "title": "Product Catalog",
+    "subtitle": "Explore our curated collection of technical components and elite accessories for modern yachting. Certified excellence.",
+    "all_filter": "All",
+    "search_placeholder": "Search components or accessories...",
+    "no_results_title": "No products found",
+    "no_results_desc": "Please try adjusting your filters or search terms.",
+    "details_btn": "Technical Datasheet"
+  },
+  "about_page": {
+    "badge": "Legacy of Excellence",
+    "subtitle": "Since 1998, the benchmark in plexiglass craftsmanship and maritime design engineering.",
+    "our_history": "Our Heritage",
+    "narrative_title": "Precision & Artistry.",
+    "pillars_title": "Our Pillars",
+    "pillar1_title": "Reliability",
+    "pillar1_desc": "Exacting attention to detail combined with a rich heritage in marine manufacturing ensures exceptional, enduring products.",
+    "pillar2_title": "Transparency",
+    "pillar2_desc": "Our focus is establishing transparent, seamless, and trusted collaborations from day one with shipyards and private clients alike.",
+    "pillar3_title": "Efficiency",
+    "pillar3_desc": "We fuse traditional maritime craftsmanship with modern engineering and materials to deliver optimal production efficiency."
+  },
+  "contact_page": {
+    "badge": "Technical Support",
+    "title": "Send Us a Message",
+    "desc": "Our engineering team is at your disposal for consultations regarding components and installations. We respond within 24 working hours.",
+    "center_title": "Headquarters",
+    "consulting_title": "Direct Advisory",
+    "quotes_title": "Quote Requests",
+    "hours_week": "Mon - Fri: 09:00 - 18:00",
+    "hours_sat": "Saturday: 09:00 - 13:00",
+    "hours_sun": "Sunday: Closed",
+    "success_title": "Message Sent Successfully!",
+    "success_desc": "Thank you for contacting us. One of our specialists will respond within 24 hours.",
+    "new_msg_btn": "New Message",
+    "form_subject": "Subject",
+    "form_subject_placeholder": "Spare parts inquiry",
+    "form_msg_placeholder": "Please provide the details of your inquiry here..."
+  },
+  "footer": {
+    "tagline": "Specializing in the custom fabrication of plexiglass and acrylic materials for the luxury marine sector for over 28 years.",
+    "nav_title": "Navigation",
+    "contact_title": "Contact",
+    "info_title": "Request Information",
+    "info_desc": "For bespoke quotes or technical consulting, please enter your email and we will contact you shortly.",
+    "info_placeholder": "Your email address...",
+    "copyright": "© 2026 FRALLICCIARDI - All rights reserved",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "products": {
+    "anchor": {
+      "name": "Delta High-Hold Anchor",
+      "category": "Mooring",
+      "description": "Stainless steel anchor engineered for exceptional holding power in sandy and muddy seabeds.",
+      "spec_material": "AISI 316 Stainless Steel",
+      "spec_weight": "10kg - 40kg",
+      "spec_compat": "Vessels 6-15m"
+    },
+    "propeller": {
+      "name": "Pro-Pitch V6 Propeller",
+      "category": "Propulsion",
+      "description": "High-performance aluminum propeller for outboard motors, optimized for speed and thrust.",
+      "spec_diam": "14.5 inch",
+      "spec_pass": "19 inch",
+      "spec_pale": "3"
+    },
+    "fender": {
+      "name": "F-Elite Series Fenders",
+      "category": "Protection",
+      "description": "Heavy-duty cylindrical fenders with dual reinforced ends for ultimate protection.",
+      "spec_length": "75cm",
+      "spec_diam": "23cm",
+      "spec_color": "Navy Blue, White, Black"
+    },
+    "gps": {
+      "name": "Garmin GPSMAP Chartplotter",
+      "category": "Electronics",
+      "description": "Chartplotter featuring a 12-inch touchscreen display, integrated sonar, and radar connectivity.",
+      "spec_display": "12\" IPS",
+      "spec_res": "1920x1080",
+      "spec_water": "IPX7"
+    }
+  },
+  "test_message": "This is an automated translation test!"
+}

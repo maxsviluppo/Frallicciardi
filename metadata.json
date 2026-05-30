@@ -1,0 +1,6 @@
+{
+  "name": "NAUTIPART",
+  "description": "Distribuzione professionale di componentistica navale e accessori tecnici per lo yachting moderno.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

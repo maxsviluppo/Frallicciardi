@@ -1,0 +1,199 @@
+{
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalogo",
+    "about": "Chi Siamo",
+    "contacts": "Contatti"
+  },
+  "hero": {
+    "title_line1": "L'Ingegneria",
+    "title_line2": "Del Mare",
+    "subtitle": "Precisione Tecnica. Performance Senza Confini.",
+    "explore_catalog": "Esplora Catalogo",
+    "inspiration": "Ispirazione",
+    "background_url": "https://www.youtube.com/embed/nvsvSCy7-2c?autoplay=1&mute=1&loop=1&playlist=nvsvSCy7-2c&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1",
+    "mobile_fallback_image": "/motor_yacht.jpg"
+  },
+  "mission": {
+    "badge": "Oltre la Superficie",
+    "title_line1": "La Nostra",
+    "title_line2": "Missione",
+    "p1": "La ditta Frallicciardi è specializzata nella lavorazione e trasformazione di plexiglas e affini, nella progettazione e realizzazione di manufatti utilizzati nel settore nautico.",
+    "p2": "Da oltre 28 anni opera adottando tecniche riprese dalla tradizione accanto a sistemi e prodotti innovativi. Per cantieri o privati viene da sempre seguita un’ottica di cura del singolo dettaglio.",
+    "p3": "L’obiettivo principale è la soddisfazione del cliente e la creazione sin dall’inizio, di un rapporto chiaro e sereno. Le caratteristiche distintive della nostra ditta nel settore sono: affidabilità, trasparenza, efficienza.",
+    "cta": "Scopri la nostra storia",
+    "experience_years": "Anni di Esperienza",
+    "detail_care": "Cura del Dettaglio",
+    "image": "https://i.pinimg.com/736x/b5/ef/2a/b5ef2afd452f043a4d86323641377597.jpg"
+  },
+  "qualities": {
+    "precision_title": "Affidabilità",
+    "precision_desc": "La fiducia nei nostri confronti è il nostro biglietto da visita.",
+    "precision_image": "/sail_boat.jpg",
+    "certified_title": "Qualità",
+    "certified_desc": "Solo materiali di alta qualità per la lavorazione dei nostri prodotti.",
+    "certified_image": "/motor_yacht.jpg",
+    "experience_title": "Esperienza",
+    "experience_desc": "Gli ottimi risultati raggiunti nel tempo al servizio del Cliente.",
+    "experience_image": "/racing_boat.jpg",
+    "featured_title": "In Evidenza",
+    "winch_title": "Sistemi Winch Pro",
+    "winch_desc": "Serie Performance 2024",
+    "propeller_title": "Elica Pro-Pitch V6",
+    "propeller_desc": "Efficienza Idrodinamica"
+  },
+  "categories": {
+    "badge": "Sfoglia per Tipo",
+    "title_line1": "Le Nostre",
+    "title_line2": "Eccellenze",
+    "accessori": "Accessori",
+    "parabrezza": "Parabrezza",
+    "porte_scorrevoli": "Porte scorrevoli",
+    "sportelli": "Sportelli",
+    "polimero": "Polimero",
+    "elettronica": "Elettronica"
+  },
+  "contact_section": {
+    "badge": "Contatti",
+    "title_line1": "Sempre a",
+    "title_line2": "Vostra Disposizione",
+    "opening_hours": "Orari di Apertura",
+    "hours_detail": "LUN/SAB — 08:30 / 18:00",
+    "desc": "Per qualsiasi informazione, delucidazioni e chiarimenti in merito ai nostri prodotti, non esitare a contattarci. Compila il modulo con i tuoi dati e inviaci un messaggio. Ti risponderemo nel più breve tempo possibile.",
+    "location": "Sede",
+    "phone": "Telefono",
+    "email": "Email",
+    "form_name": "Nominativo",
+    "form_name_placeholder": "Nome e Cognome",
+    "form_email": "Email",
+    "form_email_placeholder": "email@esempio.it",
+    "form_phone": "Telefono",
+    "form_phone_placeholder": "+39 ...",
+    "form_message": "Messaggio",
+    "form_message_placeholder": "Come possiamo aiutarti?",
+    "form_submit": "Invia Messaggio"
+  },
+  "featured_products": {
+    "badge": "Highlight",
+    "title": "Prodotti in Primo Piano",
+    "view_all": "Vedi tutto il catalogo",
+    "details": "Dettagli Scheda"
+  },
+  "catalog_page": {
+    "title": "Catalogo Prodotti",
+    "subtitle": "Sfoglia la nostra selezione di componenti tecnici e accessori d'eccellenza per lo yachting moderno. Qualità certificata.",
+    "all_filter": "Tutto",
+    "search_placeholder": "Cerca parte o accessorio...",
+    "no_results_title": "Nessun prodotto trovato",
+    "no_results_desc": "Prova a cambiare i filtri o il termine di ricerca.",
+    "details_btn": "Scheda Tecnica"
+  },
+  "about_page": {
+    "badge": "Legacy of Excellence",
+    "subtitle": "Dal 1998, il punto di riferimento nella lavorazione del plexiglas e nella progettazione di manufatti per il settore nautico.",
+    "our_history": "La Nostra Storia",
+    "narrative_title": "Cura & Dettaglio.",
+    "pillars_title": "I Nostri Pilastri",
+    "pillar1_title": "Affidabilità",
+    "pillar1_desc": "La cura del singolo dettaglio e la lunga storia di lavorazioni nel settore nautico garantiscono manufatti eccellenti e duraturi.",
+    "pillar2_title": "Trasparenza",
+    "pillar2_desc": "L'obiettivo principale è creare sin dall'inizio un rapporto chiaro, trasparente e sereno con tutti i nostri clienti, cantieri o privati.",
+    "pillar3_title": "Efficienza",
+    "pillar3_desc": "Uniamo le tecniche artigianali della tradizione nautica con sistemi e prodotti moderni per la massima resa produttiva.",
+    "image": "/workshop.jpg"
+  },
+  "contact_page": {
+    "badge": "Supporto Tecnico",
+    "title": "Scrivici un messaggio",
+    "desc": "Il nostro team tecnico è a tua disposizione per consulenze su ricambi e installazioni. Rispondiamo entro 24 ore lavorative.",
+    "center_title": "Sede Centrale",
+    "consulting_title": "Consulenza Rapida",
+    "quotes_title": "Richieste Preventivi",
+    "hours_week": "Lun - Ven: 09:00 - 18:00",
+    "hours_sat": "Sabato: 09:00 - 13:00",
+    "hours_sun": "Domenica: Chiuso",
+    "success_title": "Messaggio Inviato!",
+    "success_desc": "Grazie per averci contattato. Uno dei nostri specialisti ti risponderà entro 24 ore.",
+    "new_msg_btn": "Nuovo Messaggio",
+    "form_subject": "Oggetto",
+    "form_subject_placeholder": "Richiesta informazioni ricambi",
+    "form_msg_placeholder": "Scrivi qui i dettagli della tua richiesta..."
+  },
+  "footer": {
+    "tagline": "Specializzati nella lavorazione e trasformazione di plexiglas e affini per il settore nautico da oltre 28 anni.",
+    "nav_title": "Navigazione",
+    "contact_title": "Contatti",
+    "info_title": "Richiedi Info",
+    "info_desc": "Per preventivi personalizzati o consulenza tecnica, inserisci la tua email e ti contatteremo al più presto.",
+    "info_placeholder": "La tua email...",
+    "copyright": "© 2026 FRALLICCIARDI - Tutti i diritti riservati",
+    "privacy": "Privacy",
+    "terms": "Termini"
+  },
+  "products": {
+    "anchor": {
+      "name": "Ancora Delta High-Hold",
+      "category": "Ormeggio",
+      "description": "Ancora in acciaio inossidabile progettata per una tenuta eccezionale su fondali sabbiosi e fangosi.",
+      "spec_material": "Acciaio Inox Aisi 316",
+      "spec_weight": "10kg - 40kg",
+      "spec_compat": "Barche 6-15m"
+    },
+    "propeller": {
+      "name": "Elica Pro-Pitch V6",
+      "category": "Propulsione",
+      "description": "Elica in alluminio ad alte prestazioni per motori fuoribordo, ottimizzata per velocità e spinta.",
+      "spec_diam": "14.5 inch",
+      "spec_pass": "19 inch",
+      "spec_pale": "3"
+    },
+    "fender": {
+      "name": "Parabordi Serie F-Elite",
+      "category": "Protezione",
+      "description": "Parabordi cilindrici extra-resistenti con doppia estremità rinforzata per la massima protezione.",
+      "spec_length": "75cm",
+      "spec_diam": "23cm",
+      "spec_color": "Blu Navy, Bianco, Nero"
+    },
+    "gps": {
+      "name": "Cartografico Garmin GPSMAP",
+      "category": "Elettronica",
+      "description": "Navigatore cartografico con display touch da 12 pollici, ecoscandaglio integrato e connettività radar.",
+      "spec_display": "12\" IPS",
+      "spec_res": "1920x1080",
+      "spec_water": "IPX7"
+    }
+  },
+  "test_message": "Questo è un test automatico di traduzione!",
+  "azienda": {
+    "favicon": "/favicon (2).png",
+    "address": "Via Ferrante Imparato, 265 - 80146 Napoli (NA) ITALY",
+    "email": "info@frallicciardi.it",
+    "contact_email": "info@frallicciardi.it",
+    "phone": "+39 081 752 8376",
+    "phone_mobile": "+39 339 75 55 860",
+    "hours": "LUN/SAB — 08:30 / 18:00",
+    "social_instagram": "#",
+    "social_facebook": "#",
+    "social_linkedin": "#",
+    "social_tiktok": "#"
+  },
+  "seo": {
+    "global": {
+      "title": "Home | Lavorazione Plexiglas",
+      "description": "Specializzati nella lavorazione e trasformazione di plexiglas e affini per il settore nautico da oltre 28 anni.",
+      "keywords": "plexiglas, nautica, parabrezza barca, lavorazione plexiglas napoli"
+    },
+    "home": {
+      "title": "Frallicciardi",
+      "description": "Precisione Tecnica. Performance Senza Confini.",
+      "keywords": "nautica, plexiglas, frallicciardi",
+      "robots": "index, follow"
+    },
+    "integrations": {
+      "google_analytics": "",
+      "google_search_console": "",
+      "ads_txt": ""
+    }
+  }
+}

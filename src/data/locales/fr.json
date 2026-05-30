@@ -1,0 +1,159 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "catalog": "Catalogue",
+    "about": "À Propos",
+    "contacts": "Contact"
+  },
+  "hero": {
+    "title_line1": "L'Ingénierie",
+    "title_line2": "De la Mer",
+    "subtitle": "Précision Technique. Performance Sans Limites.",
+    "explore_catalog": "Découvrir le Catalogue",
+    "inspiration": "Inspiration"
+  },
+  "mission": {
+    "badge": "Au-delà de la Surface",
+    "title_line1": "Notre",
+    "title_line2": "Mission",
+    "p1": "La maison Frallicciardi est spécialisée dans l'usinage et la transformation du plexiglas et de ses dérivés, ainsi que dans la conception et la fabrication de pièces d'exception destinées au secteur nautique.",
+    "p2": "Depuis plus de 28 ans, elle œuvre en associant les techniques de la haute tradition à des systèmes et produits innovants. Pour les chantiers comme pour les particuliers, une attention absolue est portée au moindre détail.",
+    "p3": "Notre objectif principal est la satisfaction de notre clientèle et l'établissement, dès le premier contact, d'une relation claire et de confiance. Les valeurs distinctives de notre maison dans le secteur sont : la fiabilité, la transparence et l'efficacité.",
+    "cta": "Découvrir notre histoire",
+    "experience_years": "Années d'Expérience",
+    "detail_care": "L'Art du Détail"
+  },
+  "qualities": {
+    "precision_title": "Précision Technique",
+    "precision_desc": "Chaque composant est sélectionné pour garantir des performances d'excellence en toutes conditions.",
+    "certified_title": "Standard Certifié",
+    "certified_desc": "Nous collaborons exclusivement avec les plus grandes signatures mondiales pour garantir une sécurité absolue.",
+    "featured_title": "À l'Honneur",
+    "winch_title": "Systèmes Winch Pro",
+    "winch_desc": "Série Performance 2024",
+    "propeller_title": "Hélice Pro-Pitch V6",
+    "propeller_desc": "Efficacité Hydrodynamique"
+  },
+  "categories": {
+    "badge": "Parcourir par Catégorie",
+    "title_line1": "Nos",
+    "title_line2": "Excellences",
+    "accessori": "Accessoires",
+    "parabrezza": "Pare-brises",
+    "porte_scorrevoli": "Portes coulissantes",
+    "sportelli": "Portillons et Capots",
+    "polimero": "Polymères",
+    "elettronica": "Électronique"
+  },
+  "contact_section": {
+    "badge": "Contact",
+    "title_line1": "Toujours à",
+    "title_line2": "Votre Disposition",
+    "opening_hours": "Horaires d'Ouverture",
+    "hours_detail": "LUN/SAM — 08:30 / 18:00",
+    "desc": "Pour toute information ou demande de précision concernant nos créations, n'hésitez pas à nous contacter. Veuillez remplir ce formulaire et nous envoyer votre message. Nous vous répondrons dans les plus brefs délais.",
+    "location": "Siège",
+    "phone": "Téléphone",
+    "email": "Email",
+    "form_name": "Nom complet",
+    "form_name_placeholder": "Nom et Prénom",
+    "form_email": "Email",
+    "form_email_placeholder": "contact@exemple.com",
+    "form_phone": "Téléphone",
+    "form_phone_placeholder": "+39 ...",
+    "form_message": "Message",
+    "form_message_placeholder": "Comment pouvons-nous vous aider ?",
+    "form_submit": "Envoyer le Message"
+  },
+  "featured_products": {
+    "badge": "Sélection",
+    "title": "Créations Phares",
+    "view_all": "Voir tout le catalogue",
+    "details": "Fiche Technique"
+  },
+  "catalog_page": {
+    "title": "Catalogue de Créations",
+    "subtitle": "Découvrez notre sélection de composants techniques et d'accessoires de prestige pour le yachting moderne. Qualité certifiée.",
+    "all_filter": "Tout",
+    "search_placeholder": "Rechercher une pièce ou un accessoire...",
+    "no_results_title": "Aucun produit trouvé",
+    "no_results_desc": "Veuillez modifier vos filtres ou affiner votre recherche.",
+    "details_btn": "Fiche Technique"
+  },
+  "about_page": {
+    "badge": "Héritage d'Excellence",
+    "subtitle": "Depuis 1998, la référence dans le travail du plexiglas et la conception de pièces d'exception pour le secteur nautique.",
+    "our_history": "Notre Histoire",
+    "narrative_title": "Précision & Détail.",
+    "pillars_title": "Nos Piliers",
+    "pillar1_title": "Fiabilité",
+    "pillar1_desc": "L'attention portée à chaque détail et notre longue expertise de l'univers nautique garantissent des créations d'excellence et de grande durabilité.",
+    "pillar2_title": "Transparence",
+    "pillar2_desc": "Notre priorité absolue est de fonder, dès le premier instant, une relation claire, transparente et de confiance avec chacun de nos clients, chantiers ou particuliers.",
+    "pillar3_title": "Efficacité",
+    "pillar3_desc": "Nous associons les techniques artisanales de la tradition maritime aux systèmes et matériaux les plus modernes pour une efficacité de production maximale."
+  },
+  "contact_page": {
+    "badge": "Support Technique",
+    "title": "Écrivez-nous",
+    "desc": "Notre équipe technique se tient à votre entière disposition pour toute étude de projet, pièces de rechange et installations. Nous répondons sous 24 heures ouvrées.",
+    "center_title": "Siège Social",
+    "consulting_title": "Conseil Personnalisé",
+    "quotes_title": "Demandes de Devis",
+    "hours_week": "Lun - Ven : 09:00 - 18:00",
+    "hours_sat": "Samedi : 09:00 - 13:00",
+    "hours_sun": "Dimanche : Fermé",
+    "success_title": "Message Envoyé !",
+    "success_desc": "Nous vous remercions de nous avoir contactés. L'un de nos spécialistes vous répondra sous 24 heures.",
+    "new_msg_btn": "Nouveau Message",
+    "form_subject": "Sujet",
+    "form_subject_placeholder": "Demande d'informations pièces détachées",
+    "form_msg_placeholder": "Veuillez détailler votre demande ici..."
+  },
+  "footer": {
+    "tagline": "Spécialisés dans le travail et la transformation du plexiglas et de ses dérivés pour le secteur nautique depuis plus de 28 ans.",
+    "nav_title": "Navigation",
+    "contact_title": "Contact",
+    "info_title": "Demande d'Informations",
+    "info_desc": "Pour obtenir un devis sur mesure ou des conseils techniques, veuillez saisir votre adresse email et nous vous recontacterons dans les plus brefs délais.",
+    "info_placeholder": "Votre adresse email...",
+    "copyright": "© 2026 FRALLICCIARDI - Tous droits réservés",
+    "privacy": "Confidentialité",
+    "terms": "Conditions"
+  },
+  "products": {
+    "anchor": {
+      "name": "Ancre Delta High-Hold",
+      "category": "Mouillage",
+      "description": "Ancre en acier inoxydable conçue pour une tenue exceptionnelle sur fonds sableux et vaseux.",
+      "spec_material": "Acier Inox Aisi 316",
+      "spec_weight": "10kg - 40kg",
+      "spec_compat": "Bateaux 6-15m"
+    },
+    "propeller": {
+      "name": "Hélice Pro-Pitch V6",
+      "category": "Propulsion",
+      "description": "Hélice en aluminium haute performance pour moteurs hors-bord, optimisée pour la vitesse et la poussée.",
+      "spec_diam": "14.5 inch",
+      "spec_pass": "19 inch",
+      "spec_pale": "3"
+    },
+    "fender": {
+      "name": "Pare-battages Série F-Elite",
+      "category": "Protection",
+      "description": "Pare-battages cylindriques ultra-résistants dotés d'extrémités renforcées pour une protection maximale.",
+      "spec_length": "75cm",
+      "spec_diam": "23cm",
+      "spec_color": "Bleu Marine, Blanc, Noir"
+    },
+    "gps": {
+      "name": "Traceur de Cartes Garmin GPSMAP",
+      "category": "Électronique",
+      "description": "Traceur de cartes avec écran tactile de 12 pouces, sondeur intégré et connectivité radar.",
+      "spec_display": "12\" IPS",
+      "spec_res": "1920x1080",
+      "spec_water": "IPX7"
+    }
+  },
+  "test_message": "Ceci est un test de traduction automatique !"
+}

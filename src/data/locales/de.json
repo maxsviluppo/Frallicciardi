@@ -1,0 +1,159 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "catalog": "Katalog",
+    "about": "Über uns",
+    "contacts": "Kontakt"
+  },
+  "hero": {
+    "title_line1": "Die Ingenieurskunst",
+    "title_line2": "des Meeres",
+    "subtitle": "Technische Präzision. Grenzenlose Performance.",
+    "explore_catalog": "Katalog entdecken",
+    "inspiration": "Inspiration"
+  },
+  "mission": {
+    "badge": "Jenseits der Oberfläche",
+    "title_line1": "Unsere",
+    "title_line2": "Mission",
+    "p1": "Das Unternehmen Frallicciardi ist spezialisiert auf die Verarbeitung und Veredelung von Plexiglas und verwandten Werkstoffen sowie auf die Entwicklung und Herstellung von Präzisionsbauteilen für den anspruchsvollen maritimen Sektor.",
+    "p2": "Seit über 28 Jahren verbinden wir traditionelle Handwerkskunst mit innovativen Systemen und modernsten Materialien. Ob für namhafte Werften oder private Eigner – im Mittelpunkt steht für uns stets die Perfektion im kleinsten Detail.",
+    "p3": "Unser oberstes Ziel ist die vollkommene Zufriedenheit unserer Kunden und der Aufbau einer vertrauensvollen, transparenten Partnerschaft von Beginn an. Die Werte, die unsere Arbeit im Yachtbau auszeichnen, sind Zuverlässigkeit, Transparenz und höchste Effizienz.",
+    "cta": "Unsere Geschichte entdecken",
+    "experience_years": "Jahre Erfahrung",
+    "detail_care": "Liebe zum Detail"
+  },
+  "qualities": {
+    "precision_title": "Technische Präzision",
+    "precision_desc": "Jedes Bauteil wird sorgfältig ausgewählt, um unter allen Bedingungen auf See exzellente Leistungen zu garantieren.",
+    "certified_title": "Zertifizierter Standard",
+    "certified_desc": "Wir arbeiten ausschließlich mit den weltweit führenden Marken zusammen, um höchste Sicherheit und Langlebigkeit zu gewährleisten.",
+    "featured_title": "Im Fokus",
+    "winch_title": "Winch Pro Systeme",
+    "winch_desc": "Performance-Serie 2024",
+    "propeller_title": "Pro-Pitch V6 Propeller",
+    "propeller_desc": "Hydrodynamische Effizienz"
+  },
+  "categories": {
+    "badge": "Nach Kategorie durchsuchen",
+    "title_line1": "Unsere",
+    "title_line2": "Meisterwerke",
+    "accessori": "Zubehör",
+    "parabrezza": "Windschutzscheiben",
+    "porte_scorrevoli": "Schiebetüren",
+    "sportelli": "Luken & Klappen",
+    "polimero": "Polymere",
+    "elettronica": "Elektronik"
+  },
+  "contact_section": {
+    "badge": "Kontakt",
+    "title_line1": "Jederzeit zu",
+    "title_line2": "Ihrer Verfügung",
+    "opening_hours": "Öffnungszeiten",
+    "hours_detail": "MON/SAM — 08:30 / 18:00",
+    "desc": "Für weitere Informationen, technische Beratung oder Fragen zu unseren maßgeschneiderten Produkten stehen wir Ihnen gerne zur Verfügung. Füllen Sie einfach das Formular aus – wir setzen uns schnellstmöglich mit Ihnen in Verbindung.",
+    "location": "Standort",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "form_name": "Name",
+    "form_name_placeholder": "Vor- und Nachname",
+    "form_email": "E-Mail",
+    "form_email_placeholder": "email@esempio.it",
+    "form_phone": "Telefon",
+    "form_phone_placeholder": "+39 ...",
+    "form_message": "Nachricht",
+    "form_message_placeholder": "Wie können wir Ihnen behilflich sein?",
+    "form_submit": "Nachricht senden"
+  },
+  "featured_products": {
+    "badge": "Highlights",
+    "title": "Ausgewählte Produkte",
+    "view_all": "Gesamten Katalog ansehen",
+    "details": "Produktdetails"
+  },
+  "catalog_page": {
+    "title": "Produktkatalog",
+    "subtitle": "Entdecken Sie unsere Auswahl an erstklassigen technischen Komponenten und exklusivem Zubehör für den modernen Yachtbau. Zertifizierte Qualität.",
+    "all_filter": "Alle",
+    "search_placeholder": "Teil oder Zubehör suchen...",
+    "no_results_title": "Keine Produkte gefunden",
+    "no_results_desc": "Bitte versuchen Sie, die Filter anzupassen oder einen anderen Suchbegriff einzugeben.",
+    "details_btn": "Technisches Datenblatt"
+  },
+  "about_page": {
+    "badge": "Legacy of Excellence",
+    "subtitle": "Seit 1998 die Referenz in der Plexiglasverarbeitung und der Entwicklung von maßgeschneiderten Lösungen für den anspruchsvollen Yachtbau.",
+    "our_history": "Unsere Geschichte",
+    "narrative_title": "Präzision & Detailverliebtheit.",
+    "pillars_title": "Unsere Fundamente",
+    "pillar1_title": "Zuverlässigkeit",
+    "pillar1_desc": "Die akribische Liebe zum Detail und unsere langjährige Expertise im maritimen Sektor garantieren herausragende und beständige Maßanfertigungen.",
+    "pillar2_title": "Transparenz",
+    "pillar2_desc": "Unser oberstes Anliegen ist es, von Anfang an eine klare, transparente und vertrauensvolle Partnerschaft mit Werften und Eignern zu pflegen.",
+    "pillar3_title": "Effizienz",
+    "pillar3_desc": "Wir verbinden traditionelle maritime Handwerkstechniken mit modernsten Fertigungsmethoden für maximale Performance und Präzision."
+  },
+  "contact_page": {
+    "badge": "Technischer Support",
+    "title": "Senden Sie uns eine Nachricht",
+    "desc": "Unser technisches Expertenteam steht Ihnen für Beratungen zu Ersatzteilen, Sonderanfertigungen und Installationen gerne zur Verfügung. Wir antworten innerhalb von 24 Arbeitsstunden.",
+    "center_title": "Hauptsitz",
+    "consulting_title": "Schnellberatung",
+    "quotes_title": "Angebotsanfragen",
+    "hours_week": "Lun - Ven: 09:00 - 18:00",
+    "hours_sat": "Samstag: 09:00 - 13:00",
+    "hours_sun": "Sonntag: Geschlossen",
+    "success_title": "Nachricht gesendet!",
+    "success_desc": "Vielen Dank für Ihre Kontaktaufnahme. Einer unserer Spezialisten wird sich innerhalb von 24 Stunden bei Ihnen melden.",
+    "new_msg_btn": "Neue Nachricht",
+    "form_subject": "Betreff",
+    "form_subject_placeholder": "Anfrage Ersatzteilinformationen",
+    "form_msg_placeholder": "Geben Sie hier die Details Ihrer Anfrage ein..."
+  },
+  "footer": {
+    "tagline": "Spezialisiert auf die Verarbeitung und Veredelung von Plexiglas und High-End-Kunststoffen für den Yachtbau seit über 28 Jahren.",
+    "nav_title": "Navigation",
+    "contact_title": "Kontakt",
+    "info_title": "Informationen anfordern",
+    "info_desc": "Für maßgeschneiderte Angebote oder technische Beratung tragen Sie bitte Ihre E-Mail-Adresse ein. Wir setzen uns umgehend mit Ihnen in Verbindung.",
+    "info_placeholder": "Ihre E-Mail-Adresse...",
+    "copyright": "© 2026 FRALLICCIARDI - Alle Rechte vorbehalten",
+    "privacy": "Datenschutz",
+    "terms": "AGB"
+  },
+  "products": {
+    "anchor": {
+      "name": "Delta High-Hold Anker",
+      "category": "Ankern & Festmachen",
+      "description": "Edelstahlanker, speziell entwickelt für außergewöhnlichen Halt auf sandigen und schlammigen Meeresböden.",
+      "spec_material": "Edelstahl AISI 316",
+      "spec_weight": "10kg - 40kg",
+      "spec_compat": "Boote 6-15m"
+    },
+    "propeller": {
+      "name": "Pro-Pitch V6 Propeller",
+      "category": "Antrieb",
+      "description": "Hochleistungs-Aluminiumpropeller für Außenbordmotoren, perfekt optimiert für Geschwindigkeit und maximalen Schub.",
+      "spec_diam": "14.5 Zoll",
+      "spec_pass": "19 Zoll",
+      "spec_pale": "3"
+    },
+    "fender": {
+      "name": "Fender Serie F-Elite",
+      "category": "Schutz",
+      "description": "Besonders strapazierfähige zylindrische Fender mit verstärkten Enden für den maximalen Schutz Ihres Rumpfes.",
+      "spec_length": "75cm",
+      "spec_diam": "23cm",
+      "spec_color": "Navy-Blau, Weiß, Schwarz"
+    },
+    "gps": {
+      "name": "Garmin GPSMAP Kartenplotter",
+      "category": "Elektronik",
+      "description": "Premium-Kartenplotter mit hochauflösendem 12-Zoll-Touchscreen, integriertem Echolot und modernster Radar-Konnektivität.",
+      "spec_display": "12\" IPS",
+      "spec_res": "1920x1080",
+      "spec_water": "IPX7"
+    }
+  },
+  "test_message": "Dies ist ein automatischer Übersetzungstest!"
+}
