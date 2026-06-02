@@ -7,6 +7,7 @@ import { ArrowRight, Waves, ShieldCheck, Settings, ChevronLeft, ChevronRight } f
 import { PRODUCTS } from '../data/products';
 import { CATEGORIES } from '../data/categories';
 import { useLanguage } from '../context/LanguageContext';
+import { useThemeColor } from '../context/ThemeColorContext';
 
 // Detect if user is on a mobile/tablet device (screen width <= 768px)
 function useIsMobile(): boolean {
@@ -51,6 +52,7 @@ function buildYoutubeEmbedUrl(url: string): string {
 
 export default function Home() {
   const { t } = useLanguage();
+  const { setSlideColor } = useThemeColor();
   const isMobile = useIsMobile();
   const featuredProducts = [
     "parabrezza-1-676x507",
@@ -89,6 +91,17 @@ export default function Home() {
     }, 8000);
     return () => clearInterval(timer);
   }, [heroSlides.length]);
+
+  // Dynamically update the theme color context based on the current slide color palette
+  useEffect(() => {
+    const slideColors = [
+      '#09111e', // Elegant dark navy / ocean black (matches video/sea vibe)
+      '#0b1f38', // Deep premium marine blue
+      '#031c26', // Rich deep teal/sea green
+    ];
+    const color = slideColors[currentSlide % slideColors.length];
+    setSlideColor(color);
+  }, [currentSlide, setSlideColor]);
 
   const goToSlide = (idx: number) => {
     setDirection(idx > currentSlide ? 1 : -1);

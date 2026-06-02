@@ -43,6 +43,8 @@ export async function generateMetadata() {
   };
 }
 
+import { ThemeColorProvider } from '../context/ThemeColorContext';
+
 export default function RootLayout({
   children,
 }: {
@@ -82,11 +84,13 @@ export default function RootLayout({
           </>
         )}
         <LanguageProvider>
-          <Navbar />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
+          <ThemeColorProvider>
+            <Navbar />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </ThemeColorProvider>
         </LanguageProvider>
       </body>
     </html>
