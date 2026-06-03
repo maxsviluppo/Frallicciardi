@@ -235,7 +235,7 @@ function CatalogContent() {
               {/* Close Button */}
               <button 
                 onClick={closeLightbox}
-                className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors bg-white/10 p-3 rounded-full hover:scale-105"
+                className="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white transition-colors bg-white/10 p-3 rounded-full hover:scale-105 z-50"
                 title="Close"
               >
                 <X className="w-6 h-6" />
