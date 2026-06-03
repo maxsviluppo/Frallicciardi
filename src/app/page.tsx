@@ -122,7 +122,7 @@ export default function Home() {
   const path3 = "M 196.707 86.121 C 194.816 105.883, 198.152 125.965, 198.152 125.965 C 181.09 112.953, 159.414 105.066, 141.348 104.613 C 131.473 104.395, 121.23 109.543, 113.566 116.543 C 112.391 117.625, 111.82 118.348, 111.82 118.348 C 117.281 98.73, 128.305 78.664, 136.879 64.348 C 151.676 63.637, 186.48 79.965, 196.707 86.121 Z";
 
   const scale = isMobile ? 0.45 : 0.85;
-  const translateX = isMobile ? 800 : 720;
+  const translateX = isMobile ? 800 : 660;
   const translateY = isMobile ? 860 : 805;
 
   const svgString = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='xMaxYMax meet' width='100%' height='100%'><defs><mask id='m'><rect width='1000' height='1000' fill='white'/><g transform='translate(${translateX}, ${translateY}) scale(${scale})'><path d='${path1} ${path2} ${path3}' fill-rule='evenodd' fill='black'/></g></mask></defs><rect width='1000' height='1000' fill='black' mask='url(%23m)'/></svg>`;
