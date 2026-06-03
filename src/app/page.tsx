@@ -119,135 +119,151 @@ export default function Home() {
 
   return (
     <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
-      {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden rounded-br-[4rem] lg:rounded-br-[12rem] shadow-2xl z-20">
-        {/* Slide Background Layer */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-slate-950/40 z-10 pointer-events-none" />
-          <AnimatePresence mode="sync">
+      {/* Hero Section Wrapper */}
+      <div className="relative w-full overflow-visible">
+        {/* Hero Section */}
+        <section 
+          style={{
+            WebkitMaskImage: isMobile 
+              ? 'radial-gradient(circle 25px at calc(100% - 40px) calc(100% - 40px), transparent 25px, black 25.5px)'
+              : 'radial-gradient(circle 25px at calc(100% - 77.4px) calc(100% - 77.4px), transparent 25px, black 25.5px)',
+            maskImage: isMobile
+              ? 'radial-gradient(circle 25px at calc(100% - 40px) calc(100% - 40px), transparent 25px, black 25.5px)'
+              : 'radial-gradient(circle 25px at calc(100% - 77.4px) calc(100% - 77.4px), transparent 25px, black 25.5px)'
+          }}
+          className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden rounded-br-[4rem] lg:rounded-br-[12rem] shadow-2xl z-20"
+        >
+          {/* Slide Background Layer */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <div className="absolute inset-0 bg-slate-950/40 z-10 pointer-events-none" />
+            <AnimatePresence mode="sync">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.2 }}
+                className="absolute inset-0 pointer-events-none"
+              >
+                {showMobileFallback ? (
+                  // Mobile: YouTube non fa autoplay — mostra immagine statica
+                  <img
+                    key="mobile-fallback"
+                    src={MOBILE_FALLBACK_IMAGE}
+                    alt="Hero Backdrop"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                  />
+                ) : isYoutube ? (
+                  // Desktop: iframe YouTube con autoplay
+                  <iframe
+                    key={heroEmbedUrl}
+                    src={heroEmbedUrl}
+                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    title="Sea Backdrop Video"
+                  />
+                ) : isVideo ? (
+                  // Video file diretto (mp4/webm) — funziona su tutti i dispositivi
+                  <video
+                    key={bgUrl}
+                    src={bgUrl}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+                  />
+                ) : (
+                  <img
+                    key={bgUrl}
+                    src={bgUrl}
+                    alt="Hero Backdrop"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                  />
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Slide navigation arrows — only shown if more than 1 slide */}
+          {heroSlides.length > 1 && (
+            <>
+              <button
+                onClick={() => goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length)}
+                className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/30 hover:bg-black/60 text-white rounded-full backdrop-blur-sm transition-all"
+                aria-label="Slide precedente"
+              >
+                <ChevronLeft className="w-7 h-7" />
+              </button>
+              <button
+                onClick={() => goToSlide((currentSlide + 1) % heroSlides.length)}
+                className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/30 hover:bg-black/60 text-white rounded-full backdrop-blur-sm transition-all"
+                aria-label="Slide successiva"
+              >
+                <ChevronRight className="w-7 h-7" />
+              </button>
+              {/* Dots */}
+              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                {heroSlides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goToSlide(i)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      i === currentSlide ? 'bg-white w-6' : 'bg-white/40'
+                    }`}
+                    aria-label={`Slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
+          <div className="relative z-10 text-center px-4 sm:px-12 max-w-5xl mx-auto">
             <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2 }}
-              className="absolute inset-0 pointer-events-none"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              {showMobileFallback ? (
-                // Mobile: YouTube non fa autoplay — mostra immagine statica
-                <img
-                  key="mobile-fallback"
-                  src={MOBILE_FALLBACK_IMAGE}
-                  alt="Hero Backdrop"
-                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                />
-              ) : isYoutube ? (
-                // Desktop: iframe YouTube con autoplay
-                <iframe
-                  key={heroEmbedUrl}
-                  src={heroEmbedUrl}
-                  className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                  frameBorder="0"
-                  allow="autoplay; encrypted-media"
-                  title="Sea Backdrop Video"
-                />
-              ) : isVideo ? (
-                // Video file diretto (mp4/webm) — funziona su tutti i dispositivi
-                <video
-                  key={bgUrl}
-                  src={bgUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
-                />
-              ) : (
-                <img
-                  key={bgUrl}
-                  src={bgUrl}
-                  alt="Hero Backdrop"
-                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-                />
-              )}
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white tracking-widest mb-6 leading-tight">
+                <span className="font-bold uppercase text-orange-600">{t('hero.title_line1')}</span> <br/>
+                <span className="font-light uppercase">{(t('hero.title_line2'))}</span>
+              </h1>
+              <p className="text-[10px] sm:text-xs md:text-sm text-white/70 font-normal uppercase tracking-[0.2em] sm:tracking-[0.5em] mb-12">
+                {t('hero.subtitle')}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-4">
+                <Link 
+                  href="/catalogo"
+                  className="w-full sm:w-auto px-6 sm:px-14 py-4 sm:py-6 bg-blue-950 text-white font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs hover:bg-blue-900 hover:scale-105 transition-all rounded-full flex items-center justify-center gap-2 shadow-xl shadow-blue-950/30 whitespace-nowrap"
+                >
+                  {t('hero.explore_catalog')} <ArrowRight size={14} />
+                </Link>
+                <a 
+                  href="#mission"
+                  className="w-full sm:w-auto px-6 sm:px-14 py-4 sm:py-6 bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs hover:bg-white/20 hover:scale-105 transition-all rounded-full flex items-center justify-center whitespace-nowrap"
+                >
+                  {t('hero.inspiration')}
+                </a>
+              </div>
             </motion.div>
-          </AnimatePresence>
-        </div>
+          </div>
 
-        {/* Slide navigation arrows — only shown if more than 1 slide */}
-        {heroSlides.length > 1 && (
-          <>
-            <button
-              onClick={() => goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length)}
-              className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/30 hover:bg-black/60 text-white rounded-full backdrop-blur-sm transition-all"
-              aria-label="Slide precedente"
-            >
-              <ChevronLeft className="w-7 h-7" />
-            </button>
-            <button
-              onClick={() => goToSlide((currentSlide + 1) % heroSlides.length)}
-              className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/30 hover:bg-black/60 text-white rounded-full backdrop-blur-sm transition-all"
-              aria-label="Slide successiva"
-            >
-              <ChevronRight className="w-7 h-7" />
-            </button>
-            {/* Dots */}
-            <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-              {heroSlides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goToSlide(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    i === currentSlide ? 'bg-white w-6' : 'bg-white/40'
-                  }`}
-                  aria-label={`Slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </>
-        )}
-
-        <div className="relative z-10 text-center px-4 sm:px-12 max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          {/* Scroll Indicator */}
+          <motion.div 
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 z-20 hidden md:block"
           >
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white tracking-widest mb-6 leading-tight">
-              <span className="font-bold uppercase text-orange-600">{t('hero.title_line1')}</span> <br/>
-              <span className="font-light uppercase">{(t('hero.title_line2'))}</span>
-            </h1>
-            <p className="text-[10px] sm:text-xs md:text-sm text-white/70 font-normal uppercase tracking-[0.2em] sm:tracking-[0.5em] mb-12">
-              {t('hero.subtitle')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-4">
-              <Link 
-                href="/catalogo"
-                className="w-full sm:w-auto px-6 sm:px-14 py-4 sm:py-6 bg-blue-950 text-white font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs hover:bg-blue-900 hover:scale-105 transition-all rounded-full flex items-center justify-center gap-2 shadow-xl shadow-blue-950/30 whitespace-nowrap"
-              >
-                {t('hero.explore_catalog')} <ArrowRight size={14} />
-              </Link>
-              <a 
-                href="#mission"
-                className="w-full sm:w-auto px-6 sm:px-14 py-4 sm:py-6 bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs hover:bg-white/20 hover:scale-105 transition-all rounded-full flex items-center justify-center whitespace-nowrap"
-              >
-                {t('hero.inspiration')}
-              </a>
+            <div className="w-1 h-12 rounded-full bg-white/20 relative">
+              <div className="absolute top-0 left-0 w-full h-1/3 bg-white rounded-full animate-bounce" />
             </div>
           </motion.div>
-        </div>
+        </section>
 
-        {/* Scroll Indicator */}
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 z-20 hidden md:block"
-        >
-          <div className="w-1 h-12 rounded-full bg-white/20 relative">
-            <div className="absolute top-0 left-0 w-full h-1/3 bg-white rounded-full animate-bounce" />
-          </div>
-        </motion.div>
-      </section>
+        {/* Outer hole depth effect ring */}
+        <div className="absolute z-30 pointer-events-none rounded-full w-[50px] h-[50px] bottom-[15px] right-[15px] lg:bottom-[52.4px] lg:right-[52.4px] shadow-[inset_0_4px_6px_rgba(0,0,0,0.65),_0_1px_2px_rgba(255,255,255,0.1)] border border-black/30 dark:border-slate-800/30" />
+      </div>
 
       {/* Mission Section */}
       <section id="mission" className="py-24 px-4 sm:px-10 bg-white dark:bg-slate-950 overflow-hidden">
