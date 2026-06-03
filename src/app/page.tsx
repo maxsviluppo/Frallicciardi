@@ -117,6 +117,17 @@ export default function Home() {
   const MOBILE_FALLBACK_IMAGE = t('hero.mobile_fallback_image', '/motor_yacht.jpg');
   const showMobileFallback = isMobile && isYoutube;
 
+  const path1 = "M 219.313 4.832 C 202.047 6.039, 172.164 16.184, 145.094 43.797 C 103.316 86.418, 103.645 131.578, 103.645 131.578 C 103.645 131.578, 111.91 114.609, 137.359 114.449 C 169.234 114.246, 236.516 170.965, 217.984 148.41 C 201.75 128.652, 206.773 60.543, 233.43 10.473 C 235.488 6.605, 229.672 4.109, 219.313 4.832 Z";
+  const path2 = "M 216.563 13.547 C 218.469 13.59, 219.871 13.914, 220.668 14.488 C 221.063 14.773, 221.313 15.121, 221.391 15.527 C 221.469 15.934, 221.387 16.395, 221.121 16.914 C 217.52 23.969, 213.566 32.77, 210.023 41.914 C 208.254 46.484, 206.582 51.145, 205.113 55.715 C 203.645 60.285, 202.375 64.762, 201.398 68.98 C 201.398 68.98, 183.758 62.66, 174.773 60.031 C 165.734 57.383, 147.367 53.164, 147.367 53.164 C 150.977 49.141, 155.199 45.117, 159.98 41.223 C 164.758 37.332, 170.098 33.574, 175.934 30.09 C 178.855 28.348, 181.898 26.672, 185.063 25.082 C 188.227 23.496, 191.508 21.992, 194.902 20.59 C 198.297 19.188, 201.801 17.887, 205.414 16.711 C 209.023 15.531, 212.746 14.469, 216.563 13.547 Z";
+  const path3 = "M 196.707 86.121 C 194.816 105.883, 198.152 125.965, 198.152 125.965 C 181.09 112.953, 159.414 105.066, 141.348 104.613 C 131.473 104.395, 121.23 109.543, 113.566 116.543 C 112.391 117.625, 111.82 118.348, 111.82 118.348 C 117.281 98.73, 128.305 78.664, 136.879 64.348 C 151.676 63.637, 186.48 79.965, 196.707 86.121 Z";
+
+  const scale = isMobile ? 0.45 : 0.85;
+  const translateX = isMobile ? 800 : 720;
+  const translateY = isMobile ? 860 : 805;
+
+  const svgString = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='xMaxYMax meet' width='100%' height='100%'><defs><mask id='m'><rect width='1000' height='1000' fill='white'/><g transform='translate(${translateX}, ${translateY}) scale(${scale})'><path d='${path1} ${path2} ${path3}' fill-rule='evenodd' fill='black'/></g></mask></defs><rect width='1000' height='1000' fill='black' mask='url(%23m)'/></svg>`;
+  const maskUrl = `url("data:image/svg+xml,${encodeURIComponent(svgString)}")`;
+
   return (
     <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
       {/* Hero Section Wrapper */}
@@ -124,12 +135,8 @@ export default function Home() {
         {/* Hero Section */}
         <section 
           style={{
-            WebkitMaskImage: isMobile 
-              ? 'radial-gradient(circle 25px at calc(100% - 40px) calc(100% - 40px), transparent 25px, black 25.5px)'
-              : 'radial-gradient(circle 25px at calc(100% - 77.4px) calc(100% - 77.4px), transparent 25px, black 25.5px)',
-            maskImage: isMobile
-              ? 'radial-gradient(circle 25px at calc(100% - 40px) calc(100% - 40px), transparent 25px, black 25.5px)'
-              : 'radial-gradient(circle 25px at calc(100% - 77.4px) calc(100% - 77.4px), transparent 25px, black 25.5px)'
+            WebkitMaskImage: maskUrl,
+            maskImage: maskUrl
           }}
           className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden rounded-br-[4rem] lg:rounded-br-[12rem] shadow-2xl z-20"
         >
@@ -261,8 +268,40 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Outer hole depth effect ring */}
-        <div className="absolute z-30 pointer-events-none rounded-full w-[50px] h-[50px] bottom-[15px] right-[15px] lg:bottom-[52.4px] lg:right-[52.4px] shadow-[inset_0_4px_6px_rgba(0,0,0,0.65),_0_1px_2px_rgba(255,255,255,0.1)] border border-black/30 dark:border-slate-800/30" />
+        {/* Sail outline and depth effect SVG overlay */}
+        <svg 
+          className="absolute inset-0 w-full h-full pointer-events-none z-30" 
+          viewBox="0 0 1000 1000" 
+          preserveAspectRatio="xMaxYMax meet"
+        >
+          <defs>
+            <filter id="inset-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              {/* Calculate inside shadow offset (light source from top-left) */}
+              <feOffset dx="1.5" dy="2.5" />
+              <feGaussianBlur stdDeviation="3.5" result="offset-blur" />
+              {/* Subtract blurred offset shape from the original shape */}
+              <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse" />
+              {/* Flood shadow color */}
+              <feFlood floodColor="black" floodOpacity="0.75" result="color" />
+              {/* Intersect color with the inverse shape to clip to boundaries */}
+              <feComposite operator="in" in="color" in2="inverse" result="shadow" />
+              {/* Overlay shadow on top of the original white fill */}
+              <feComposite operator="over" in="shadow" in2="SourceGraphic" />
+            </filter>
+          </defs>
+          <g transform={`translate(${translateX}, ${translateY}) scale(${scale})`}>
+            <g>
+              {/* Internal shadow simulation (dark rim cast downwards from the top edges of both sails) */}
+              <path d={`${path1} ${path2} ${path3}`} fillRule="evenodd" fill="none" stroke="rgba(0,0,0,0.65)" strokeWidth="2.5" transform="translate(0, 1.2)" />
+              
+              {/* Light reflection simulation on the bottom edges */}
+              <path d={`${path1} ${path2} ${path3}`} fillRule="evenodd" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1" transform="translate(0, -1.2)" />
+              
+              {/* Crisp top edge border and white fill with 3D inset shadow (sails are correctly separated) */}
+              <path d={`${path1} ${path2} ${path3}`} fillRule="evenodd" fill="white" stroke="rgba(255,255,255,0.2)" strokeWidth="1" filter="url(#inset-shadow)" />
+            </g>
+          </g>
+        </svg>
       </div>
 
       {/* Mission Section */}
