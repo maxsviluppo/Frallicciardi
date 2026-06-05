@@ -1,6 +1,7 @@
 import '../index.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CookieBanner from '../components/CookieBanner';
 import { LanguageProvider } from '../context/LanguageContext';
 import Script from 'next/script';
 
@@ -90,6 +91,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <CookieBanner />
           </ThemeColorProvider>
         </LanguageProvider>
       </body>

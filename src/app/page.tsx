@@ -256,16 +256,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Scroll Indicator */}
-          <motion.div 
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 z-20 hidden md:block"
-          >
-            <div className="w-1 h-12 rounded-full bg-white/20 relative">
-              <div className="absolute top-0 left-0 w-full h-1/3 bg-white rounded-full animate-bounce" />
-            </div>
-          </motion.div>
+
         </section>
 
         {/* Sail outline and depth effect SVG overlay */}
