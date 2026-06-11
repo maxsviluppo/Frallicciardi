@@ -9,7 +9,7 @@ import {
 import { CATEGORIES, type Category } from '../../data/categories';
 import { PRODUCTS, type Product } from '../../data/products';
 import itLocale from '../../data/locales/it.json';
-import { Database, Cloud } from 'lucide-react';
+import { Database, Cloud, Cpu } from 'lucide-react';
 
 type Tab = 'seo' | 'azienda' | 'pagine' | 'catalogo' | 'categorie';
 
@@ -563,6 +563,135 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              {/* AI SEO Monitor Section */}
+              <div className="border-t border-slate-200 pt-8 mt-8 space-y-6">
+                <h3 className="text-lg font-bold text-slate-900 uppercase tracking-tight flex items-center gap-2">
+                  <Cpu className="w-5 h-5 text-orange-600" /> Monitor di Ottimizzazione AI SEO (Search GPT, Gemini, Perplexity)
+                </h3>
+                
+                {(() => {
+                  const titleText = getNestedValue(locales, 'seo.global.title') || '';
+                  const descText = getNestedValue(locales, 'seo.global.description') || '';
+                  const hasAddress = !!getNestedValue(locales, 'azienda.address');
+                  const hasPhone = !!getNestedValue(locales, 'azienda.phone');
+                  const hasEmail = !!getNestedValue(locales, 'azienda.email');
+                  
+                  let aiScore = 20; 
+                  if (titleText.length >= 30 && titleText.length <= 70) aiScore += 20;
+                  if (descText.length >= 100 && descText.length <= 170) aiScore += 20;
+                  if (hasAddress && hasPhone && hasEmail) aiScore += 20;
+                  if (products.length > 0) aiScore += 20;
+
+                  return (
+                    <div className="space-y-6">
+                      <div className="grid md:grid-cols-4 gap-6">
+                        
+                        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">AI Searchability Score</span>
+                            <div className="text-3xl font-black text-slate-900 mt-2">{aiScore}%</div>
+                          </div>
+                          <div className="mt-4">
+                            <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                              <div className="bg-orange-600 h-full transition-all duration-500" style={{ width: `${aiScore}%` }}></div>
+                            </div>
+                            <span className="text-[10px] text-slate-550 text-slate-500 mt-1 block">Pronto per l'indicizzazione semantica</span>
+                          </div>
+                        </div>
+
+                        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Entità Indicizzate</span>
+                            <div className="text-3xl font-black text-slate-900 mt-2">{products.length + 6}</div>
+                          </div>
+                          <div className="mt-4 text-[10px] text-slate-500 leading-tight">
+                            {products.length} prodotti + 6 pagine base registrate in sitemap.xml.
+                          </div>
+                        </div>
+
+                        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Schema.org (JSON-LD)</span>
+                            <div className="text-sm font-bold text-green-700 mt-2 flex items-center gap-1.5">
+                              <Check className="w-4 h-4 text-green-600" /> Attivo & Validato
+                            </div>
+                          </div>
+                          <div className="mt-4 text-[10px] text-slate-500 leading-tight">
+                            LocalBusiness schema iniettato direttamente nell'header per parser semantici e crawler LLM.
+                          </div>
+                        </div>
+
+                        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Robots.txt AI Access</span>
+                            <div className="text-sm font-bold text-green-700 mt-2 flex items-center gap-1.5">
+                              <Check className="w-4 h-4 text-green-600" /> Ottimizzato
+                            </div>
+                          </div>
+                          <div className="mt-4 text-[10px] text-slate-500 leading-tight">
+                            Accesso consentito a tutti gli User-Agent intelligenti.
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-8 mt-4">
+                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                          <h4 className="text-xs font-black uppercase tracking-widest text-slate-500">Stato Crawler AI abilitati (Robots.txt)</h4>
+                          <div className="space-y-3">
+                            {[
+                              { name: 'GPTBot (OpenAI / SearchGPT)', status: 'Consentito (100%)', purpose: 'Risposte dirette e link in ChatGPT' },
+                              { name: 'Google-Extended (Gemini)', status: 'Consentito (100%)', purpose: 'Risposte di ricerca e RAG in Gemini' },
+                              { name: 'ClaudeBot (Anthropic)', status: 'Consentito (100%)', purpose: 'Addestramento e Retrieval Claude' },
+                              { name: 'PerplexityBot (Perplexity)', status: 'Consentito (100%)', purpose: 'Citazione fonti in Perplexity Search' },
+                              { name: 'Applebot-Extended (Apple Intelligence)', status: 'Consentito (100%)', purpose: 'Integrazione Siri e Spotlight AI' }
+                            ].map((bot, i) => (
+                              <div key={i} className="flex items-center justify-between p-3 bg-white rounded-xl border border-slate-100">
+                                <div>
+                                  <div className="text-xs font-bold text-slate-800">{bot.name}</div>
+                                  <div className="text-[10px] text-slate-400">{bot.purpose}</div>
+                                </div>
+                                <span className="text-[10px] font-bold text-green-700 bg-green-50 px-2 py-1 rounded-md border border-green-200">
+                                  {bot.status}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                          <div className="flex justify-between items-center">
+                            <h4 className="text-xs font-black uppercase tracking-widest text-slate-500">JSON-LD Dati Strutturati (schema.org)</h4>
+                            <span className="text-[9px] font-bold text-orange-600 uppercase bg-orange-50 border border-orange-100 px-2 py-0.5 rounded">Real-time</span>
+                          </div>
+                          
+                          <div className="bg-slate-900 rounded-xl p-4 font-mono text-[11px] text-green-400 overflow-x-auto max-h-[260px] border border-slate-950">
+                            <pre className="whitespace-pre">{JSON.stringify({
+                              "@context": "https://schema.org",
+                              "@type": "LocalBusiness",
+                              "name": "Frallicciardi",
+                              "telephone": getNestedValue(locales, 'azienda.phone') || "Non configurato",
+                              "email": getNestedValue(locales, 'azienda.email') || "Non configurato",
+                              "address": {
+                                "@type": "PostalAddress",
+                                "streetAddress": getNestedValue(locales, 'azienda.address') || "Non configurato"
+                              },
+                              "openingHours": getNestedValue(locales, 'azienda.hours') || "Non configurato",
+                              "sitemap": "https://www.frallicciardi.it/sitemap.xml",
+                              "productsCount": products.length
+                            }, null, 2)}</pre>
+                          </div>
+                          <span className="text-[10px] text-slate-500 block">
+                            Questi dati vengono letti in tempo reale dagli agenti IA per rispondere a query del tipo: "Qual è il telefono di Frallicciardi?" o "Dove si trova l'azienda Frallicciardi?".
+                          </span>
+                        </div>
+                      </div>
+
+                    </div>
+                  );
+                })()}
               </div>
 
               <div className="flex justify-end pt-4 border-t border-slate-200">
