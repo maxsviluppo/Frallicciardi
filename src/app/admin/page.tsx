@@ -31,7 +31,7 @@ export default function AdminDashboard() {
   // Save status states
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
-  const [storageInfo, setStorageInfo] = useState<'database' | 'localStorage' | 'static' | null>(null);
+  const [storageInfo, setStorageInfo] = useState<'database' | 'localStorage' | 'static' | 'local_file' | null>(null);
   const [blobWarning, setBlobWarning] = useState(false);
 
   // Modals state
@@ -47,7 +47,7 @@ export default function AdminDashboard() {
   // Fetch / load initial data: DB > localStorage > static file
   useEffect(() => {
     const loadData = async () => {
-      let usedStorage: 'database' | 'localStorage' | 'static' = 'static';
+      let usedStorage: 'database' | 'localStorage' | 'static' | 'local_file' = 'static';
 
       // --- LOCALES ---
       try {
@@ -57,6 +57,9 @@ export default function AdminDashboard() {
           if (localeData.storage === 'database') {
             setLocales(localeData.data);
             usedStorage = 'database';
+          } else if (localeData.storage === 'local_file') {
+            setLocales(localeData.data);
+            usedStorage = 'local_file';
           } else {
             // Try localStorage first
             const lsLocale = localStorage.getItem('cms_locale_it');
@@ -81,6 +84,8 @@ export default function AdminDashboard() {
           const prodData = await prodRes.json();
           if (prodData.storage === 'database') {
             setProducts(prodData.products);
+          } else if (prodData.storage === 'local_file') {
+            setProducts(prodData.products);
           } else {
             const lsProd = localStorage.getItem('cms_products');
             setProducts(lsProd ? JSON.parse(lsProd) : (prodData.products || PRODUCTS));
@@ -97,6 +102,8 @@ export default function AdminDashboard() {
         if (catRes.ok) {
           const catData = await catRes.json();
           if (catData.storage === 'database') {
+            setCategories(catData.categories);
+          } else if (catData.storage === 'local_file') {
             setCategories(catData.categories);
           } else {
             const lsCat = localStorage.getItem('cms_categories');
@@ -219,9 +226,16 @@ export default function AdminDashboard() {
       });
       const data = await res.json();
       if (res.ok) {
-        setSaveMessage(data.storage === 'database' ? '✓ Salvato nel Database!' : '✓ Salvato (localStorage)');
-        if (data.storage === 'database') setStorageInfo('database');
-        else setStorageInfo('localStorage');
+        if (data.storage === 'database') {
+          setSaveMessage('✓ Salvato nel Database!');
+          setStorageInfo('database');
+        } else if (data.storage === 'local_file') {
+          setSaveMessage('✓ Salvato nei file locali!');
+          setStorageInfo('local_file');
+        } else {
+          setSaveMessage('✓ Salvato (localStorage)');
+          setStorageInfo('localStorage');
+        }
       } else {
         setSaveMessage('✓ Salvato in locale (localStorage)');
       }
@@ -245,7 +259,13 @@ export default function AdminDashboard() {
         body: JSON.stringify({ products: updatedProducts }),
       });
       const data = await res.json();
-      setSaveMessage(data.storage === 'database' ? '✓ Prodotti salvati nel Database!' : '✓ Prodotti salvati (localStorage)');
+      if (data.storage === 'database') {
+        setSaveMessage('✓ Prodotti salvati nel Database!');
+      } else if (data.storage === 'local_file') {
+        setSaveMessage('✓ Prodotti salvati nei file locali!');
+      } else {
+        setSaveMessage('✓ Prodotti salvati (localStorage)');
+      }
     } catch {
       setSaveMessage('✓ Prodotti salvati in locale');
     } finally {
@@ -266,7 +286,13 @@ export default function AdminDashboard() {
         body: JSON.stringify({ categories: updatedCategories }),
       });
       const data = await res.json();
-      setSaveMessage(data.storage === 'database' ? '✓ Categorie salvate nel Database!' : '✓ Categorie salvate (localStorage)');
+      if (data.storage === 'database') {
+        setSaveMessage('✓ Categorie salvate nel Database!');
+      } else if (data.storage === 'local_file') {
+        setSaveMessage('✓ Categorie salvate nei file locali!');
+      } else {
+        setSaveMessage('✓ Categorie salvate (localStorage)');
+      }
     } catch {
       setSaveMessage('✓ Categorie salvate in locale');
     } finally {
@@ -406,12 +432,14 @@ export default function AdminDashboard() {
               <span className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg font-mono border ${
                 storageInfo === 'database' 
                   ? 'bg-green-50 border-green-200 text-green-700' 
+                  : storageInfo === 'local_file'
+                  ? 'bg-emerald-50 border-emerald-200 text-emerald-700'
                   : storageInfo === 'localStorage'
                   ? 'bg-blue-50 border-blue-200 text-blue-700'
                   : 'bg-amber-50 border-amber-200 text-amber-700'
               }`}>
-                {storageInfo === 'database' ? <Database className="w-3 h-3" /> : <Cloud className="w-3 h-3" />}
-                {storageInfo === 'database' ? 'Neon DB' : storageInfo === 'localStorage' ? 'Browser (locale)' : 'File Statici'}
+                {storageInfo === 'database' ? <Database className="w-3 h-3" /> : storageInfo === 'local_file' ? <HardDrive className="w-3 h-3" /> : <Cloud className="w-3 h-3" />}
+                {storageInfo === 'database' ? 'Neon DB' : storageInfo === 'local_file' ? 'File Locali' : storageInfo === 'localStorage' ? 'Browser (locale)' : 'File Statici'}
               </span>
             )}
             {saveMessage && (
@@ -432,6 +460,17 @@ export default function AdminDashboard() {
             <div>
               <strong className="font-bold">Modalità Browser (localStorage)</strong> — Le modifiche vengono salvate in questo browser e sopravvivono ai refresh. 
               Per renderle permanenti su tutti i dispositivi, configura <strong>Neon DB</strong> e <strong>Vercel Blob</strong> nelle variabili d&apos;ambiente su Vercel.
+            </div>
+          </div>
+        )}
+
+        {/* localFile banner */}
+        {storageInfo === 'local_file' && (
+          <div className="mb-6 px-6 py-4 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-start gap-3 text-sm text-emerald-850">
+            <HardDrive className="w-5 h-5 mt-0.5 flex-shrink-0 text-emerald-500" />
+            <div>
+              <strong className="font-bold">Modalità Sviluppo (File Locali)</strong> — Le modifiche vengono salvate direttamente nei file del codice sorgente del progetto (`src/data/`).
+              Saranno persistenti e incluse nel prossimo commit/build.
             </div>
           </div>
         )}

@@ -21,6 +21,19 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true, storage: 'database' });
     }
 
+    // Save to local file in development/local environment
+    if (process.env.NODE_ENV === 'development' || !process.env.VERCEL) {
+      try {
+        const fs = await import('fs');
+        const path = await import('path');
+        const filePath = path.join(process.cwd(), 'src', 'data', 'locales', `${lang}.json`);
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+        return NextResponse.json({ success: true, storage: 'local_file' });
+      } catch (fsError: any) {
+        console.error('Error writing locale file:', fsError);
+      }
+    }
+
     // Fallback: return success but warn no persistence
     console.warn('DATABASE_URL not set. Changes will not persist across deployments.');
     return NextResponse.json({ 
@@ -48,6 +61,21 @@ export async function GET(req: Request) {
       }
     }
     
+    // In local development, try reading the actual file if it exists
+    if (process.env.NODE_ENV === 'development' || !process.env.VERCEL) {
+      try {
+        const fs = await import('fs');
+        const path = await import('path');
+        const filePath = path.join(process.cwd(), 'src', 'data', 'locales', `${lang}.json`);
+        if (fs.existsSync(filePath)) {
+          const fileData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+          return NextResponse.json({ success: true, data: fileData, storage: 'local_file' });
+        }
+      } catch (readError) {
+        console.error('Error reading local locale file:', readError);
+      }
+    }
+
     // Fallback to static file
     return NextResponse.json({ success: true, data: itLocale, storage: 'static' });
   } catch (error: any) {
