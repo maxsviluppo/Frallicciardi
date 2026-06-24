@@ -33,6 +33,7 @@ export default function AdminDashboard() {
   const [saveMessage, setSaveMessage] = useState('');
   const [storageInfo, setStorageInfo] = useState<'database' | 'localStorage' | 'static' | 'local_file' | null>(null);
   const [blobWarning, setBlobWarning] = useState(false);
+  const [showSaveModal, setShowSaveModal] = useState(false);
 
   // Modals state
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
@@ -236,6 +237,7 @@ export default function AdminDashboard() {
           setSaveMessage('✓ Salvato (localStorage)');
           setStorageInfo('localStorage');
         }
+        setShowSaveModal(true);
       } else {
         setSaveMessage('✓ Salvato in locale (localStorage)');
       }
@@ -266,6 +268,7 @@ export default function AdminDashboard() {
       } else {
         setSaveMessage('✓ Prodotti salvati (localStorage)');
       }
+      setShowSaveModal(true);
     } catch {
       setSaveMessage('✓ Prodotti salvati in locale');
     } finally {
@@ -293,6 +296,7 @@ export default function AdminDashboard() {
       } else {
         setSaveMessage('✓ Categorie salvate (localStorage)');
       }
+      setShowSaveModal(true);
     } catch {
       setSaveMessage('✓ Categorie salvate in locale');
     } finally {
@@ -1599,6 +1603,25 @@ export default function AdminDashboard() {
                 <Save className="w-4 h-4" /> Salva Modifiche
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* SUCCESS SAVE MODAL */}
+      {showSaveModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-sm p-4">
+          <div className="bg-white border border-slate-200 w-full max-w-sm rounded-[2rem] shadow-2xl p-8 flex flex-col items-center text-center text-slate-800">
+            <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 mb-4 border border-emerald-100 shadow-sm animate-bounce">
+              <Check className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">Salvataggio Completato</h3>
+            <p className="text-sm text-slate-500 mb-6">Dati salvati con successo!</p>
+            <button
+              onClick={() => setShowSaveModal(false)}
+              className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold uppercase tracking-widest transition-all cursor-pointer"
+            >
+              Chiudi
+            </button>
           </div>
         </div>
       )}
