@@ -76,7 +76,13 @@ export default function Home() {
     t('hero.background_url', DEFAULT_BG),
     t('hero.background_url_2', ''),
     t('hero.background_url_3', ''),
-  ].filter(Boolean);
+  ].filter(url => {
+    if (!url) return false;
+    const trimmed = url.trim();
+    if (trimmed === '' || trimmed === 'undefined' || trimmed === 'null') return false;
+    if (trimmed === 'hero.background_url' || trimmed === 'hero.background_url_2' || trimmed === 'hero.background_url_3') return false;
+    return true;
+  });
   const heroSlides = rawSlides.length > 0 ? rawSlides : [DEFAULT_BG];
 
   const [currentSlide, setCurrentSlide] = useState(0);
