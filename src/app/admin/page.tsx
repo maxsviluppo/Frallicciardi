@@ -1027,10 +1027,10 @@ export default function AdminDashboard() {
                           if (!file) return;
                           try {
                             const result = await uploadFile(file);
-                            if (result.success) {
+                            if (result.success && result.url) {
                               setNewCategoryImage(result.url);
                             } else {
-                              alert('Caricamento fallito: ' + result.error);
+                              alert('Caricamento fallito: ' + (result.error || 'URL non disponibile'));
                             }
                           } catch (err: any) {
                             alert('Errore di caricamento: ' + err.message);
@@ -1205,10 +1205,10 @@ export default function AdminDashboard() {
                                 if (!file) return;
                                 try {
                                   const result = await uploadFile(file);
-                                  if (result.success) {
+                                  if (result.success && result.url) {
                                     setPageModalData({ ...pageModalData, [item.key]: result.url });
                                   } else {
-                                    alert('Caricamento fallito: ' + result.error);
+                                    alert('Caricamento fallito: ' + (result.error || 'URL non disponibile'));
                                   }
                                 } catch (err: any) {
                                   alert('Errore di caricamento: ' + err.message);
@@ -1370,13 +1370,13 @@ export default function AdminDashboard() {
                           if (!file) return;
                           try {
                             const result = await uploadFile(file);
-                            if (result.success) {
+                            if (result.success && result.url) {
                               const input = document.getElementById('prod_image') as HTMLInputElement;
                               if (input) input.value = result.url;
                               const previewImg = document.getElementById('prod_image_preview') as HTMLImageElement;
                               if (previewImg) previewImg.src = result.url;
                             } else {
-                              alert('Caricamento fallito: ' + result.error);
+                              alert('Caricamento fallito: ' + (result.error || 'URL non disponibile'));
                             }
                           } catch (err: any) {
                             alert('Errore di caricamento: ' + err.message);
@@ -1517,13 +1517,13 @@ export default function AdminDashboard() {
                         if (!file) return;
                         try {
                           const result = await uploadFile(file);
-                          if (result.success) {
+                          if (result.success && result.url) {
                             const input = document.getElementById('cat_edit_image') as HTMLInputElement;
                             if (input) input.value = result.url;
                             const previewImg = document.getElementById('cat_edit_image_preview') as HTMLImageElement;
                             if (previewImg) previewImg.src = result.url;
                           } else {
-                            alert('Caricamento fallito: ' + result.error);
+                            alert('Caricamento fallito: ' + (result.error || 'URL non disponibile'));
                           }
                         } catch (err: any) {
                           alert('Errore di caricamento: ' + err.message);

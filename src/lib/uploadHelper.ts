@@ -1,6 +1,6 @@
 import { upload } from '@vercel/blob/client';
 
-export async function uploadFile(file: File): Promise<{ success: boolean; url: string; error?: string }> {
+export async function uploadFile(file: File): Promise<{ success: boolean; url?: string; error?: string }> {
   try {
     // 1. Check if Vercel Blob is configured by calling GET on the route
     const configRes = await fetch('/api/admin/upload-image');
