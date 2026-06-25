@@ -87,32 +87,12 @@ export default function Home() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1); // 1 forward, -1 backward
+  const [videoError, setVideoError] = useState<string | null>(null);
 
-  // Auto-rotate slides
+  // Reset video error state on slide change
   useEffect(() => {
-    if (heroSlides.length <= 1) return;
-    const timer = setInterval(() => {
-      setDirection(1);
-      setCurrentSlide(prev => (prev + 1) % heroSlides.length);
-    }, 8000);
-    return () => clearInterval(timer);
-  }, [heroSlides.length]);
-
-  // Dynamically update the theme color context based on the current slide color palette
-  useEffect(() => {
-    const slideColors = [
-      '#09111e', // Elegant dark navy / ocean black (matches video/sea vibe)
-      '#0b1f38', // Deep premium marine blue
-      '#031c26', // Rich deep teal/sea green
-    ];
-    const color = slideColors[currentSlide % slideColors.length];
-    setSlideColor(color);
-  }, [currentSlide, setSlideColor]);
-
-  const goToSlide = (idx: number) => {
-    setDirection(idx > currentSlide ? 1 : -1);
-    setCurrentSlide(idx);
-  };
+    setVideoError(null);
+  }, [currentSlide]);
 
   let bgUrl = heroSlides[currentSlide] || heroSlides[0] || DEFAULT_BG;
   
@@ -141,6 +121,36 @@ export default function Home() {
   // On mobile, YouTube iframes don't autoplay — use fallback image instead
   const MOBILE_FALLBACK_IMAGE = t('hero.mobile_fallback_image', '/motor_yacht.jpg');
   const showMobileFallback = isMobile && isYoutube;
+
+  // Auto-rotate slides
+  useEffect(() => {
+    if (heroSlides.length <= 1) return;
+    
+    // Give videos 20 seconds to play so they aren't cut off early; images rotate every 8 seconds
+    const intervalTime = isVideo || isYoutube ? 20000 : 8000;
+    
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentSlide(prev => (prev + 1) % heroSlides.length);
+    }, intervalTime);
+    return () => clearInterval(timer);
+  }, [heroSlides.length, isVideo, isYoutube]);
+
+  // Dynamically update the theme color context based on the current slide color palette
+  useEffect(() => {
+    const slideColors = [
+      '#09111e', // Elegant dark navy / ocean black (matches video/sea vibe)
+      '#0b1f38', // Deep premium marine blue
+      '#031c26', // Rich deep teal/sea green
+    ];
+    const color = slideColors[currentSlide % slideColors.length];
+    setSlideColor(color);
+  }, [currentSlide, setSlideColor]);
+
+  const goToSlide = (idx: number) => {
+    setDirection(idx > currentSlide ? 1 : -1);
+    setCurrentSlide(idx);
+  };
 
   const path1 = "M 219.313 4.832 C 202.047 6.039, 172.164 16.184, 145.094 43.797 C 103.316 86.418, 103.645 131.578, 103.645 131.578 C 103.645 131.578, 111.91 114.609, 137.359 114.449 C 169.234 114.246, 236.516 170.965, 217.984 148.41 C 201.75 128.652, 206.773 60.543, 233.43 10.473 C 235.488 6.605, 229.672 4.109, 219.313 4.832 Z";
   const path2 = "M 216.563 13.547 C 218.469 13.59, 219.871 13.914, 220.668 14.488 C 221.063 14.773, 221.313 15.121, 221.391 15.527 C 221.469 15.934, 221.387 16.395, 221.121 16.914 C 217.52 23.969, 213.566 32.77, 210.023 41.914 C 208.254 46.484, 206.582 51.145, 205.113 55.715 C 203.645 60.285, 202.375 64.762, 201.398 68.98 C 201.398 68.98, 183.758 62.66, 174.773 60.031 C 165.734 57.383, 147.367 53.164, 147.367 53.164 C 150.977 49.141, 155.199 45.117, 159.98 41.223 C 164.758 37.332, 170.098 33.574, 175.934 30.09 C 178.855 28.348, 181.898 26.672, 185.063 25.082 C 188.227 23.496, 191.508 21.992, 194.902 20.59 C 198.297 19.188, 201.801 17.887, 205.414 16.711 C 209.023 15.531, 212.746 14.469, 216.563 13.547 Z";
@@ -175,7 +185,7 @@ export default function Home() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1] }}
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0 pointer-events-none transform-gpu will-change-transform"
               >
                 {showMobileFallback ? (
                   // Mobile: YouTube non fa autoplay — mostra immagine statica
@@ -190,12 +200,12 @@ export default function Home() {
                   <iframe
                     key={heroEmbedUrl}
                     src={heroEmbedUrl}
-                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none transform-gpu will-change-transform"
                     frameBorder="0"
                     allow="autoplay; encrypted-media"
                     title="Sea Backdrop Video"
                   />
-                ) : isVideo ? (
+                ) : (isVideo && videoError !== bgUrl) ? (
                   // Video file diretto (mp4/webm) — funziona su tutti i dispositivi
                   <video
                     key={bgUrl}
@@ -209,12 +219,16 @@ export default function Home() {
                       e.currentTarget.muted = true;
                       e.currentTarget.play().catch(() => {});
                     }}
-                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
+                    onError={() => {
+                      console.warn('Video stream failed, showing fallback image');
+                      setVideoError(bgUrl);
+                    }}
+                    className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none transform-gpu will-change-transform"
                   />
                 ) : (
                   <img
                     key={bgUrl}
-                    src={bgUrl}
+                    src={videoError === bgUrl ? MOBILE_FALLBACK_IMAGE : bgUrl}
                     alt="Hero Backdrop"
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                   />
