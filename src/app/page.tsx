@@ -166,15 +166,15 @@ export default function Home() {
           className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden rounded-br-[4rem] lg:rounded-br-[12rem] shadow-2xl z-20"
         >
           {/* Slide Background Layer */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <div className="absolute inset-0 bg-slate-950/40 z-10 pointer-events-none" />
+          <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+            <div className="absolute inset-0 bg-slate-950/50 z-10 pointer-events-none" />
             <AnimatePresence mode="sync">
               <motion.div
                 key={currentSlide}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 1.2 }}
+                transition={{ duration: 1.8, ease: [0.25, 0.1, 0.25, 1] }}
                 className="absolute inset-0 pointer-events-none"
               >
                 {showMobileFallback ? (
@@ -204,6 +204,11 @@ export default function Home() {
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    onCanPlay={(e) => {
+                      e.currentTarget.muted = true;
+                      e.currentTarget.play().catch(() => {});
+                    }}
                     className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
                   />
                 ) : (

@@ -35,6 +35,7 @@ export default function AdminDashboard() {
   const [storageInfo, setStorageInfo] = useState<'database' | 'localStorage' | 'static' | 'local_file' | null>(null);
   const [blobWarning, setBlobWarning] = useState(false);
   const [showSaveModal, setShowSaveModal] = useState(false);
+  const [showVideoUploadModal, setShowVideoUploadModal] = useState(false);
 
   // Modals state
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
@@ -135,9 +136,9 @@ export default function AdminDashboard() {
         { label: 'Titolo Eroe Linea 1', key: 'hero.title_line1', type: 'text' },
         { label: 'Titolo Eroe Linea 2', key: 'hero.title_line2', type: 'text' },
         { label: 'Sottotitolo Eroe', key: 'hero.subtitle', type: 'text' },
-        { label: 'Slide 1 Hero — Sfondo (Video, YouTube o Immagine)', key: 'hero.background_url', type: 'image' },
-        { label: 'Slide 2 Hero — Sfondo (facoltativa)', key: 'hero.background_url_2', type: 'image' },
-        { label: 'Slide 3 Hero — Sfondo (facoltativa)', key: 'hero.background_url_3', type: 'image' },
+        { label: 'Slide 1 Hero — Sfondo (Immagine, Link YouTube/Dropbox o File)', key: 'hero.background_url', type: 'image' },
+        { label: 'Slide 2 Hero — Sfondo (facoltativa - Immagine, Link YouTube/Dropbox o File)', key: 'hero.background_url_2', type: 'image' },
+        { label: 'Slide 3 Hero — Sfondo (facoltativa - Immagine, Link YouTube/Dropbox o File)', key: 'hero.background_url_3', type: 'image' },
         { label: 'Testo Missione 1', key: 'mission.p1', type: 'textarea' },
         { label: 'Testo Missione 2', key: 'mission.p2', type: 'textarea' },
         { label: 'Testo Missione 3', key: 'mission.p3', type: 'textarea' },
@@ -1192,7 +1193,7 @@ export default function AdminDashboard() {
                             value={pageModalData[item.key] || ''}
                             onChange={e => setPageModalData({ ...pageModalData, [item.key]: e.target.value })}
                             className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500 text-slate-900"
-                            placeholder={item.key.includes('background') ? 'Es: https://www.youtube.com/watch?v=ID oppure URL .mp4/.webm o link immagine' : 'URL immagine o carica un file...'}
+                            placeholder={item.key.includes('background') ? 'Inserisci un link (Immagine, YouTube, Dropbox di foto/video) o carica un file...' : 'URL immagine o carica un file...'}
                           />
                           <label className="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold uppercase tracking-widest cursor-pointer flex items-center justify-center whitespace-nowrap">
                             Carica File
@@ -1203,6 +1204,14 @@ export default function AdminDashboard() {
                               onChange={async (e) => {
                                 const file = e.target.files?.[0];
                                 if (!file) return;
+                                
+                                // Intercept video file uploads and show modal
+                                if (file.type.startsWith('video/')) {
+                                  setShowVideoUploadModal(true);
+                                  e.target.value = '';
+                                  return;
+                                }
+
                                 try {
                                   const result = await uploadFile(file);
                                   if (result.success && result.url) {
@@ -1595,6 +1604,27 @@ export default function AdminDashboard() {
             <p className="text-sm text-slate-500 mb-6">Dati salvati con successo!</p>
             <button
               onClick={() => setShowSaveModal(false)}
+              className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold uppercase tracking-widest transition-all cursor-pointer"
+            >
+              Chiudi
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* VIDEO UPLOAD ERROR MODAL */}
+      {showVideoUploadModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-sm p-4">
+          <div className="bg-white border border-slate-200 w-full max-w-sm rounded-[2rem] shadow-2xl p-8 flex flex-col items-center text-center text-slate-800 animate-in fade-in zoom-in-95 duration-200">
+            <div className="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 mb-4 border border-amber-100 shadow-sm">
+              <HelpCircle className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">Caricamento Diretto Disabilitato</h3>
+            <p className="text-sm text-slate-500 mb-6 leading-relaxed">
+              Il caricamento diretto di file video non è supportato. Per i video, inserisci un link esterno (es. YouTube o Dropbox) per garantire prestazioni ottimali.
+            </p>
+            <button
+              onClick={() => setShowVideoUploadModal(false)}
               className="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold uppercase tracking-widest transition-all cursor-pointer"
             >
               Chiudi
