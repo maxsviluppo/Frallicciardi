@@ -1,11 +1,48 @@
 import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
+import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
 
+export async function GET() {
+  return NextResponse.json({
+    configured: !!process.env.BLOB_READ_WRITE_TOKEN
+  });
+}
+
 export async function POST(req: Request) {
   try {
+    // Check if it's a client-side token request (JSON payload)
+    const contentType = req.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      const body = (await req.json()) as HandleUploadBody;
+      
+      const jsonResponse = await handleUpload({
+        body,
+        request: req,
+        onBeforeGenerateToken: async (pathname) => {
+          // Authentication / validation can go here
+          // We allow images and videos
+          return {
+            allowedContentTypes: [
+              'image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif',
+              'video/mp4', 'video/webm', 'video/ogg'
+            ],
+            tokenPayload: JSON.stringify({
+              // We could include user session details here
+            }),
+          };
+        },
+        onUploadCompleted: async ({ blob, tokenPayload }) => {
+          console.log('Upload completed:', blob, tokenPayload);
+        },
+      });
+      
+      return NextResponse.json(jsonResponse);
+    }
+
+    // Fallback: standard multipart/form-data upload (legacy / small files)
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
     

@@ -10,6 +10,7 @@ import { CATEGORIES, type Category } from '../../data/categories';
 import { PRODUCTS, type Product } from '../../data/products';
 import itLocale from '../../data/locales/it.json';
 import { Database, Cloud, Cpu } from 'lucide-react';
+import { uploadFile } from '../../lib/uploadHelper';
 
 type Tab = 'seo' | 'azienda' | 'pagine' | 'catalogo' | 'categorie';
 
@@ -1024,14 +1025,8 @@ export default function AdminDashboard() {
                         onChange={async (e) => {
                           const file = e.target.files?.[0];
                           if (!file) return;
-                          const formData = new FormData();
-                          formData.append('file', file);
                           try {
-                            const res = await fetch('/api/admin/upload-image', {
-                              method: 'POST',
-                              body: formData,
-                            });
-                            const result = await res.json();
+                            const result = await uploadFile(file);
                             if (result.success) {
                               setNewCategoryImage(result.url);
                             } else {
@@ -1208,14 +1203,8 @@ export default function AdminDashboard() {
                               onChange={async (e) => {
                                 const file = e.target.files?.[0];
                                 if (!file) return;
-                                const formData = new FormData();
-                                formData.append('file', file);
                                 try {
-                                  const res = await fetch('/api/admin/upload-image', {
-                                    method: 'POST',
-                                    body: formData,
-                                  });
-                                  const result = await res.json();
+                                  const result = await uploadFile(file);
                                   if (result.success) {
                                     setPageModalData({ ...pageModalData, [item.key]: result.url });
                                   } else {
@@ -1379,14 +1368,8 @@ export default function AdminDashboard() {
                         onChange={async (e) => {
                           const file = e.target.files?.[0];
                           if (!file) return;
-                          const formData = new FormData();
-                          formData.append('file', file);
                           try {
-                            const res = await fetch('/api/admin/upload-image', {
-                              method: 'POST',
-                              body: formData,
-                            });
-                            const result = await res.json();
+                            const result = await uploadFile(file);
                             if (result.success) {
                               const input = document.getElementById('prod_image') as HTMLInputElement;
                               if (input) input.value = result.url;
@@ -1532,14 +1515,8 @@ export default function AdminDashboard() {
                       onChange={async (e) => {
                         const file = e.target.files?.[0];
                         if (!file) return;
-                        const formData = new FormData();
-                        formData.append('file', file);
                         try {
-                          const res = await fetch('/api/admin/upload-image', {
-                            method: 'POST',
-                            body: formData,
-                          });
-                          const result = await res.json();
+                          const result = await uploadFile(file);
                           if (result.success) {
                             const input = document.getElementById('cat_edit_image') as HTMLInputElement;
                             if (input) input.value = result.url;
