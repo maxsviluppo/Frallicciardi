@@ -114,9 +114,28 @@ export default function Home() {
     setCurrentSlide(idx);
   };
 
-  const bgUrl = heroSlides[currentSlide];
+  let bgUrl = heroSlides[currentSlide] || heroSlides[0] || DEFAULT_BG;
+  
+  // Auto-convert Dropbox sharing links to direct streaming links
+  if (bgUrl.includes('dropbox.com')) {
+    if (bgUrl.includes('dl=0')) {
+      bgUrl = bgUrl.replace('dl=0', 'raw=1');
+    } else if (!bgUrl.includes('raw=1')) {
+      bgUrl += (bgUrl.includes('?') ? '&' : '?') + 'raw=1';
+    }
+  }
+
   const isYoutube = bgUrl.includes('youtube.com') || bgUrl.includes('youtu.be') || bgUrl.includes('/embed/');
-  const isVideo = !isYoutube && (bgUrl.endsWith('.mp4') || bgUrl.endsWith('.webm') || bgUrl.endsWith('.ogg'));
+  
+  const cleanUrl = bgUrl.split('?')[0].toLowerCase();
+  const isVideo = !isYoutube && (
+    cleanUrl.endsWith('.mp4') || 
+    cleanUrl.endsWith('.webm') || 
+    cleanUrl.endsWith('.ogg') || 
+    cleanUrl.endsWith('.mov') ||
+    bgUrl.includes('raw=1')
+  );
+  
   const heroEmbedUrl = isYoutube ? buildYoutubeEmbedUrl(bgUrl) : bgUrl;
 
   // On mobile, YouTube iframes don't autoplay — use fallback image instead

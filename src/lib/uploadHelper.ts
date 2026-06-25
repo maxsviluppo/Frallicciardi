@@ -2,6 +2,16 @@ import { upload } from '@vercel/blob/client';
 
 export async function uploadFile(file: File): Promise<{ success: boolean; url?: string; error?: string }> {
   try {
+    // Check if we are running locally (Vercel Blob client upload requires public callback URL)
+    const isLocalhost = 
+      typeof window !== 'undefined' && (
+        window.location.hostname === 'localhost' || 
+        window.location.hostname === '127.0.0.1' || 
+        window.location.hostname.startsWith('192.168.') || 
+        window.location.hostname.startsWith('172.') || 
+        window.location.hostname.startsWith('10.')
+      );
+
     // 1. Check if Vercel Blob is configured by calling GET on the route
     const configRes = await fetch('/api/admin/upload-image');
     if (!configRes.ok) {
@@ -9,7 +19,7 @@ export async function uploadFile(file: File): Promise<{ success: boolean; url?: 
     }
     const config = await configRes.json();
     
-    if (!config.configured) {
+    if (!config.configured || isLocalhost) {
       // Return a local placeholder fallback immediately without uploading the file contents,
       // preventing the 413 Payload Too Large error.
       const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';

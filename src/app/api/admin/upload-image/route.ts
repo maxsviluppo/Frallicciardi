@@ -27,7 +27,7 @@ export async function POST(req: Request) {
           return {
             allowedContentTypes: [
               'image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif',
-              'video/mp4', 'video/webm', 'video/ogg'
+              'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime', 'video/x-matroska', 'video/avi', 'video/mpeg'
             ],
             tokenPayload: JSON.stringify({
               // We could include user session details here
@@ -51,7 +51,10 @@ export async function POST(req: Request) {
     }
 
     // Validate file type
-    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg'];
+    const allowedTypes = [
+      'image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif',
+      'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime', 'video/x-matroska', 'video/avi', 'video/mpeg'
+    ];
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json(
         { success: false, error: `Tipo di file non supportato: ${file.type}. Usa immagini (JPG, PNG, WEBP) o video (MP4, WEBM).` },
