@@ -14,6 +14,10 @@ import { uploadFile } from '../../lib/uploadHelper';
 
 type Tab = 'seo' | 'azienda' | 'pagine' | 'catalogo' | 'categorie';
 
+const ADMIN_USERNAME = 'Frallicciardi';
+const ADMIN_PASSWORD = '2026Frallicciardi!';
+const ADMIN_SESSION_KEY = 'frallicciardi_admin_auth';
+
 interface LocalPage {
   id: string;
   name: string;
@@ -24,6 +28,11 @@ interface LocalPage {
 }
 
 export default function AdminDashboard() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [loginUser, setLoginUser] = useState('');
+  const [loginPass, setLoginPass] = useState('');
+  const [loginError, setLoginError] = useState('');
   const [activeTab, setActiveTab] = useState<Tab>('seo');
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -49,6 +58,16 @@ export default function AdminDashboard() {
 
   // Fetch / load initial data: DB > localStorage > static file
   useEffect(() => {
+    const stored = sessionStorage.getItem(ADMIN_SESSION_KEY);
+    if (stored === 'true') {
+      setIsAuthenticated(true);
+    }
+    setAuthChecked(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
     const loadData = async () => {
       let usedStorage: 'database' | 'localStorage' | 'static' | 'local_file' = 'static';
 
@@ -122,7 +141,26 @@ export default function AdminDashboard() {
     };
 
     loadData();
-  }, []);
+  }, [isAuthenticated]);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loginUser === ADMIN_USERNAME && loginPass === ADMIN_PASSWORD) {
+      sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
+      setIsAuthenticated(true);
+      setLoginError('');
+      setLoginPass('');
+    } else {
+      setLoginError('Username o password non corretti.');
+    }
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    setIsAuthenticated(false);
+    setLoginUser('');
+    setLoginPass('');
+  };
 
   // List of pages to edit
   const pagesList: LocalPage[] = [
@@ -405,6 +443,75 @@ export default function AdminDashboard() {
     setEditingPage(null);
   };
 
+  if (!authChecked) {
+    return (
+      <div className="pt-24 min-h-screen flex items-center justify-center bg-slate-50 text-slate-800">
+        <div className="flex flex-col items-center gap-4">
+          <Settings className="w-12 h-12 animate-spin text-orange-600" />
+          <p className="font-mono text-sm tracking-widest text-slate-500">CARICAMENTO AREA AMMINISTRATIVA...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="pt-24 min-h-screen bg-slate-50 text-slate-800 flex items-center justify-center px-6 pb-20">
+        <div className="w-full max-w-md bg-white p-8 sm:p-10 rounded-[2rem] border border-slate-200 shadow-xl">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="bg-orange-600/10 p-4 rounded-2xl border border-orange-500/20 text-orange-600">
+              <Shield className="w-8 h-8" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-black uppercase tracking-tight text-slate-900">Area Admin</h1>
+              <p className="text-xs text-slate-500 uppercase tracking-widest mt-1">Accesso riservato</p>
+            </div>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-5">
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Username</label>
+              <input
+                type="text"
+                value={loginUser}
+                onChange={(e) => setLoginUser(e.target.value)}
+                required
+                autoComplete="username"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Password</label>
+              <input
+                type="password"
+                value={loginPass}
+                onChange={(e) => setLoginPass(e.target.value)}
+                required
+                autoComplete="current-password"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+            {loginError && (
+              <p className="text-sm text-red-600 font-medium">{loginError}</p>
+            )}
+            <button
+              type="submit"
+              className="w-full py-3.5 bg-orange-600 hover:bg-orange-500 text-white rounded-xl text-xs font-bold uppercase tracking-widest transition-all"
+            >
+              Accedi
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <Link href="/" className="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-orange-600 transition-colors">
+              Torna al Sito
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (!locales) {
     return (
       <div className="pt-24 min-h-screen flex items-center justify-center bg-slate-50 text-slate-800">
@@ -453,6 +560,12 @@ export default function AdminDashboard() {
                 {saveMessage}
               </span>
             )}
+            <button
+              onClick={handleLogout}
+              className="px-6 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-full text-xs font-bold uppercase tracking-widest transition-all"
+            >
+              Esci
+            </button>
             <Link href="/" className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-full text-xs font-bold uppercase tracking-widest transition-all">
               Torna al Sito
             </Link>

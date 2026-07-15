@@ -112,8 +112,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500 text-[10px] font-bold uppercase tracking-[0.3em]">
         <p>
           {t('footer.copyright')} ·{" "}
-          <a href="mailto:castromassimo@gmail.com" className="hover:text-orange-600">
-            WEBAGENCY - DEVTOOLS
+          <a href="https://codecafe.it" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600">
+            CodeCafe.it
           </a>
           <Link href="/admin" className="inline-flex items-center ml-2 text-slate-500 hover:text-orange-600 transition-colors align-middle" title="Area Amministratore">
             <Shield size={12} className="inline ml-1" />
