@@ -31,14 +31,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (savedLang && ['it', 'en', 'fr', 'de', 'es'].includes(savedLang)) {
       setLanguageState(savedLang);
     } else {
-      const browserLang = navigator.language.split('-')[0] as Language;
-      if (['it', 'en', 'fr', 'de', 'es'].includes(browserLang)) {
-        setLanguageState(browserLang);
-        localStorage.setItem('language', browserLang);
-      } else {
-        setLanguageState('it');
-        localStorage.setItem('language', 'it');
-      }
+      setLanguageState('it');
+      localStorage.setItem('language', 'it');
     }
 
     // 1) Carica subito dal localStorage (veloce, evita flash)
