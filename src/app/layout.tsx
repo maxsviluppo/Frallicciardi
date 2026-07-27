@@ -117,6 +117,20 @@ export default async function RootLayout({
     <html lang="it" suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="VYnpcFO8NIS4C9zi_y4nZtWVhRU9_HXu-NYBmnbrLOY" />
+        
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-08ZDM37L7J"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-08ZDM37L7J');
+            `,
+          }}
+        />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
