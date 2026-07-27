@@ -74,7 +74,7 @@ export default function Contact() {
                     <a href={`tel:${t('azienda.phone_mobile', '+393397555860').replace(/\s+/g, '')}`} className="hover:text-orange-600 transition-colors">
                       {t('azienda.phone_mobile', '+39 339 75 55 860')}
                     </a>
-                    <a href="tel:+393283170529" className="hover:text-orange-600 transition-colors">
+                    <a href="tel:+393283170529" className="hover:text-orange-600 transition-colors mt-1">
                       Erika Frallicciardi +39 328 317 0529
                     </a>
                   </span>
